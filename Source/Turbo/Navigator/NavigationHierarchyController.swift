@@ -187,7 +187,8 @@ class NavigationHierarchyController {
 
     private func replaceRoot(with controller: UIViewController, via proposal: VisitProposal) {
         if let visitable = controller as? Visitable {
-            delegate.visit(visitable, on: .main, with: .init(action: .replace))
+            let options = VisitOptions(action: .replace, response: proposal.options.response)
+            delegate.visit(visitable, on: .main, with: options)
         }
 
         navigationController.dismiss(animated: proposal.animated)
